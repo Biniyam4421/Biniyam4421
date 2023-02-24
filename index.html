@@ -13,17 +13,13 @@
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        
-        <meta charset="utf-8">
-        <title>Render world copies</title>
+        <link href="css/styles.css" rel="stylesheet" /> 
+
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
         <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
         <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
-        <style>
-            body { margin: 0; padding: 0; }
-            #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-        </style>             
+
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -35,18 +31,78 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#rvlbdss">Rvlbdss</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#rvlbdss">rvlbdss</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
+            <hr class="m-0" /> 
+            <!-- rvlbdss-->    
+            <section class="resume-section" id="rvlbdss">      
+                <div class="resume-section-content">
+
+                    <style>
+                        <! --        body { margin: 0; padding: 0; }   -->
+                        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+                    </style>
+
+                    <style>
+                        #menu {
+                            position: absolute;
+                            background: #fff;
+                            padding: 10px;
+                            font-family: 'Open Sans', sans-serif;
+                        }
+                    </style>
+
+                    <div id="map"></div>
+
+
+                    <div id="menu">
+                        <input id="satellite-streets-v12" type="radio" name="rtoggle" value="satellite" checked="checked">
+                        <!-- See a list of Mapbox-hosted public styles at -->
+                        <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
+                        <label for="satellite-streets-v12">satellite streets</label>
+                        <input id="light-v11" type="radio" name="rtoggle" value="light">
+                        <label for="light-v11">light</label>
+                        <input id="dark-v11" type="radio" name="rtoggle" value="dark">
+                        <label for="dark-v11">dark</label>
+                        <input id="streets-v12" type="radio" name="rtoggle" value="streets">
+                        <label for="streets-v12">streets</label>
+                        <input id="outdoors-v12" type="radio" name="rtoggle" value="outdoors">
+                        <label for="outdoors-v12">outdoors</label>
+                    </div>    
+
+                    <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiYmluaXlhbXNpc2hhaCIsImEiOiJjbGUwM3J2ZXQwN2x6M25xamRnZ3F2bm5kIn0.AJkpzq7hl9xY3uVa6OuU2A';
+                        const map = new mapboxgl.Map({
+                            container: 'map', // container ID
+                            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                            style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
+                            center: [37.655056, 5.859011], // starting position [lng, lat]
+                            zoom: 13 // starting zoom
+                        });
+
+                        const layerList = document.getElementById('menu');
+                        const inputs = layerList.getElementsByTagName('input');
+
+                        for (const input of inputs) {
+                            input.onclick = (layer) => {
+                                const layerId = layer.target.id;
+                                map.setStyle('mapbox://styles/mapbox/' + layerId);
+                            };
+                        }
+                    </script>
+
+                </div>
+            </section>       
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
@@ -194,65 +250,14 @@
                             <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
                             34th PhD Fellowship grant by University of Genao
                         </li>
-                       
+
                     </ul>
                 </div>
-            </section>
+            </section>     
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        
-        
-    <!-- rvlbdss-->    
-        
-          <style>
-            #menu {
-                position: absolute;
-                background: #fff;
-                padding: 10px;
-                font-family: 'Open Sans', sans-serif;
-            }
-        </style>
-
-        <div id="map"></div>
-        <div id="menu">
-            <div>Set <code>renderWorldCopies</code> to:</div>
-            <div>
-                <input type="radio" id="true" name="rtoggle" value="true" checked="">
-                <label for="true">true</label>
-            </div>
-            <div>
-                <input type="radio" id="false" name="rtoggle" value="false">
-                <label for="false">false</label>
-            </div>
-        </div>
-
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiYmluaXlhbXNpc2hhaCIsImEiOiJjbGUwM3J2ZXQwN2x6M25xamRnZ3F2bm5kIn0.AJkpzq7hl9xY3uVa6OuU2A';
-            const map = new mapboxgl.Map({
-                container: 'map', // container ID
-                // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-                style: 'mapbox://styles/mapbox/streets-v12', // style URL
-                projection: 'mercator', // Projection needs to be  `mercator' or `equirectangular` to render world copies
-                center: [179, 0], // starting position [lng, lat]
-                zoom: 0.01 // starting zoom
-            });
-
-            const menu = document.getElementById('menu');
-            const inputs = menu.getElementsByTagName('input');
-
-            // If input clicked has `id` "true", set renderWorldCopies to true.
-            // Otherwise, set to false.
-            function switchRenderOption(option) {
-                map.setRenderWorldCopies(option.target.id === 'true');
-            }
-
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].onclick = switchRenderOption;
-            }
-        </script>
-        
+        <script src="js/scripts.js"></script>        
     </body>
 </html>
